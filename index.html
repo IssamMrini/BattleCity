@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tournoi Edison — Format mars 2010</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Karla:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --encre:#17100C;
+    --encre-2:#211812;
+    --encre-3:#2C2018;
+    --parchemin:#E9DCC4;
+    --parchemin-doux:#B9A98C;
+    --or:#C9A227;
+    --or-clair:#E8CB6A;
+    --effet:#C96B2E;
+    --interdit:#A32E33;
+    --semi:#4E8C7A;
+    --trait:rgba(201,162,39,.28);
+    --display:"Marcellus SC",Georgia,serif;
+    --corps:"Karla",system-ui,sans-serif;
+    --data:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{
+    margin:0;background:var(--encre);color:var(--parchemin);
+    font-family:var(--corps);font-size:16px;line-height:1.6;
+    background-image:radial-gradient(ellipse 900px 500px at 50% -10%,rgba(201,107,46,.10),transparent 70%);
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  /* ── Barre de navigation ────────────────────────────── */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(23,16,12,.93);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--trait);
+  }
+  nav .wrap{display:flex;gap:4px;align-items:center;height:56px;overflow-x:auto;scrollbar-width:none}
+  nav .wrap::-webkit-scrollbar{display:none}
+  nav a{
+    color:var(--parchemin-doux);text-decoration:none;white-space:nowrap;
+    font-family:var(--data);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    padding:8px 12px;border-radius:2px;transition:color .15s,background .15s;
+  }
+  nav a:hover,nav a:focus-visible{color:var(--or-clair);background:rgba(201,162,39,.08)}
+
+  /* ── Hero : cadre de carte ──────────────────────────── */
+  header{padding:64px 0 56px}
+  .cadre{
+    border:1px solid var(--or);padding:3px;
+    background:linear-gradient(160deg,rgba(201,162,39,.13),transparent 55%);
+  }
+  .cadre-int{border:1px solid var(--trait);padding:clamp(26px,5vw,54px)}
+  .eyebrow{
+    font-family:var(--data);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--effet);margin:0 0 18px;
+  }
+  h1{
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(38px,8vw,74px);line-height:.98;letter-spacing:.01em;
+    margin:0;color:var(--parchemin);
+  }
+  h1 em{font-style:normal;color:var(--or-clair);display:block}
+  .accroche{max-width:56ch;margin:22px 0 0;color:var(--parchemin-doux)}
+  .stats{
+    display:flex;flex-wrap:wrap;gap:0;margin-top:34px;
+    border-top:1px solid var(--trait);
+  }
+  .stat{flex:1 1 150px;padding:16px 18px 0 0;border-right:1px solid var(--trait)}
+  .stat:last-child{border-right:0}
+  .stat dt{font-family:var(--data);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--parchemin-doux)}
+  .stat dd{margin:6px 0 0;font-family:var(--display);font-size:19px;color:var(--or-clair)}
+
+  /* ── Sections ───────────────────────────────────────── */
+  section{padding:56px 0;border-top:1px solid rgba(201,162,39,.14)}
+  .titre-sec{display:flex;align-items:baseline;gap:16px;margin:0 0 8px}
+  .titre-sec h2{
+    font-family:var(--display);font-weight:400;font-size:clamp(26px,4vw,36px);
+    margin:0;color:var(--parchemin);
+  }
+  .titre-sec .compte{font-family:var(--data);font-size:12px;color:var(--effet);letter-spacing:.1em}
+  .chapeau{color:var(--parchemin-doux);max-width:64ch;margin:0 0 32px}
+
+  /* ── Règles ─────────────────────────────────────────── */
+  .regles{display:grid;gap:1px;background:var(--trait);border:1px solid var(--trait)}
+  @media(min-width:720px){.regles{grid-template-columns:1fr 1fr}}
+  .regle{background:var(--encre-2);padding:22px 24px}
+  .regle h3{
+    font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--effet);margin:0 0 10px;font-weight:700;
+  }
+  .regle p{margin:0;font-size:15px}
+  .regle p + p{margin-top:10px}
+  .regle strong{color:var(--or-clair);font-weight:600}
+  .alerte{
+    background:var(--encre-3);border-left:3px solid var(--effet);
+    padding:18px 22px;margin-top:26px;font-size:15px;
+  }
+
+  /* ── Joueurs + calendrier ───────────────────────────── */
+  .noms{
+    display:grid;gap:10px;margin-bottom:34px;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  }
+  .champ{display:flex;flex-direction:column;gap:5px}
+  .champ label{font-family:var(--data);font-size:10px;letter-spacing:.16em;color:var(--parchemin-doux);text-transform:uppercase}
+  .champ input{
+    background:var(--encre-2);border:1px solid var(--trait);color:var(--parchemin);
+    font-family:var(--corps);font-size:15px;padding:9px 11px;border-radius:2px;width:100%;
+  }
+  .champ input:focus{outline:2px solid var(--or);outline-offset:1px;border-color:transparent}
+
+  .rondes{display:grid;gap:14px}
+  .ronde{border:1px solid var(--trait);background:var(--encre-2);display:grid;grid-template-columns:auto 1fr}
+  .ronde-num{
+    display:flex;align-items:center;justify-content:center;min-width:64px;
+    background:linear-gradient(180deg,rgba(201,162,39,.16),transparent);
+    border-right:1px solid var(--trait);
+    font-family:var(--display);font-size:26px;color:var(--or-clair);
+  }
+  .ronde-corps{padding:16px 20px;display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center}
+  .duel{display:flex;align-items:center;gap:12px;font-size:16px}
+  .duel .vs{font-family:var(--data);font-size:10px;letter-spacing:.16em;color:var(--effet)}
+  .repos{
+    margin-left:auto;font-family:var(--data);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--parchemin-doux);
+  }
+  .repos b{color:var(--parchemin);font-weight:400}
+
+  /* ── Renvoi banlist ─────────────────────────────────── */
+  .renvoi{
+    display:flex;align-items:center;gap:20px;justify-content:space-between;
+    border:1px solid var(--or);background:var(--encre-2);
+    padding:24px 26px;text-decoration:none;color:inherit;transition:background .15s;
+  }
+  .renvoi:hover,.renvoi:focus-visible{background:var(--encre-3)}
+  .renvoi:focus-visible{outline:2px solid var(--or-clair);outline-offset:2px}
+  .renvoi-txt{display:flex;flex-direction:column;gap:5px}
+  .renvoi .url{font-family:var(--data);font-size:10px;letter-spacing:.14em;color:var(--effet);text-transform:uppercase}
+  .renvoi strong{font-family:var(--display);font-size:clamp(20px,3vw,26px);font-weight:400;color:var(--or-clair)}
+  .renvoi .sous{font-size:14px;color:var(--parchemin-doux)}
+  .renvoi .fleche{font-size:26px;color:var(--or);flex:0 0 auto}
+
+  /* ── Liens decks ────────────────────────────────────── */
+  .liens{display:grid;gap:1px;background:var(--trait);border:1px solid var(--trait)}
+  @media(min-width:760px){.liens{grid-template-columns:1fr 1fr}}
+  .lien{background:var(--encre-2);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .15s}
+  .lien:hover,.lien:focus-visible{background:var(--encre-3)}
+  .lien:focus-visible{outline:2px solid var(--or);outline-offset:-2px}
+  .lien h3{font-family:var(--display);font-size:19px;margin:0 0 4px;color:var(--or-clair);font-weight:400}
+  .lien .url{font-family:var(--data);font-size:10px;letter-spacing:.1em;color:var(--effet);text-transform:uppercase}
+  .lien p{margin:9px 0 0;font-size:14px;color:var(--parchemin-doux)}
+
+  footer{padding:44px 0 70px;border-top:1px solid rgba(201,162,39,.14);color:var(--parchemin-doux);font-size:13px}
+  footer code{font-family:var(--data);font-size:12px;color:var(--or-clair);background:var(--encre-2);padding:2px 6px;border:1px solid var(--trait)}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a href="#format">Le format</a>
+  <a href="#regles">Les règles</a>
+  <a href="#calendrier">Le calendrier</a>
+  <a href="#banlist">La banlist</a>
+  <a href="#decks">Les decks</a>
+</div></nav>
+
+<header><div class="wrap">
+  <div class="cadre"><div class="cadre-int">
+    <p class="eyebrow">Tournoi entre potes · Round robin · Bo3</p>
+    <h1>Format Edison<em>Banlist du 1<sup>er</sup> mars 2010</em></h1>
+    <p class="accroche">On rejoue le Yu-Gi-Oh de l'ère 5D's, figé au moment où il était le plus intéressant : les Synchros sont là, les combos infinis ne le sont pas encore. Tout se joue sur MDPro3, en room privée.</p>
+    <dl class="stats">
+      <div class="stat"><dt>Joueurs</dt><dd id="stat-joueurs">5</dd></div>
+      <div class="stat"><dt>Rondes</dt><dd>5, chacun joue tout le monde</dd></div>
+      <div class="stat"><dt>Matchs</dt><dd>2 duels gagnants</dd></div>
+      <div class="stat"><dt>Plateforme</dt><dd>MDPro3</dd></div>
+    </dl>
+  </div></div>
+</div></header>
+
+<section id="format"><div class="wrap">
+  <div class="titre-sec"><h2>Le format</h2></div>
+  <p class="chapeau">Edison, c'est le Yu-Gi-Oh de mars 2010 : la banlist de l'époque, et uniquement les cartes sorties jusque-là. C'est ce qui donne des parties longues où chaque carte compte, au lieu des tours de dix minutes du jeu actuel.</p>
+  <div class="regles">
+    <div class="regle">
+      <h3>Banlist</h3>
+      <p>Celle du <strong>1<sup>er</sup> mars 2010</strong>, reproduite plus bas sur cette page. Rien à retenir par cœur : tu construis ton deck, tu vérifies dans la liste.</p>
+    </div>
+    <div class="regle">
+      <h3>Cartes autorisées</h3>
+      <p>Toutes celles sorties en TCG <strong>jusqu'à Duelist Pack: Kaiba inclus</strong>. Rien de plus récent. Donc pas de Maxx « C », pas d'Ash Blossom, pas de Xyz.</p>
+      <p>Quelques cartes Hidden Arsenal de l'époque restent interdites malgré leur date — cas rares, la liste de référence est sur edisonformat.net.</p>
+    </div>
+    <div class="regle">
+      <h3>Le deck</h3>
+      <p>Main entre <strong>40 et 60</strong> cartes, Extra <strong>15</strong> max, Side <strong>15</strong>.</p>
+      <p>Annonce ton archétype dans le groupe, premier arrivé premier servi. C'est juste pour éviter que trois personnes débarquent avec Blackwing.</p>
+    </div>
+    <div class="regle">
+      <h3>Réglages de la room</h3>
+      <p>Room privée, mode <strong>Match</strong> (2 duels gagnants), banlist <strong>N/A</strong>.</p>
+      <p>MDPro3 ne propose pas la liste de 2010, la plus ancienne s'arrête à 2012. On l'applique donc à la main, en vérifiant nos decks entre nous.</p>
+    </div>
+  </div>
+  <div class="alerte">
+    <strong>Le client ne peut pas te bloquer.</strong> Même avec la bonne banlist chargée, MDPro3 te laisserait mettre n'importe quelle carte moderne dans ton deck. Fais un screenshot de ta liste dans le groupe avant de commencer — deux minutes de vérification et tout le monde joue au même jeu.
+  </div>
+</div></section>
+
+<section id="regles"><div class="wrap">
+  <div class="titre-sec"><h2>Les règles</h2></div>
+  <p class="chapeau">Version courte : c'est un tournoi pour se marrer. Il n'y a que trois trucs qui comptent vraiment — le format, l'ordre des matchs, et le side deck.</p>
+  <div class="regles">
+    <div class="regle">
+      <h3>Qui commence</h3>
+      <p><strong>Duel 1 :</strong> tirage au sort du client, le gagnant choisit de commencer ou non.</p>
+      <p><strong>Duels 2 et 3 :</strong> le perdant du duel précédent choisit.</p>
+    </div>
+    <div class="regle">
+      <h3>Side deck</h3>
+      <p>Entre le duel 1 et le duel 2, puis entre le 2 et le 3. MDPro3 t'ouvre l'écran automatiquement en mode Match. Tu échanges carte pour carte, Main ≥ 40, Side à 15.</p>
+      <p><strong>Entre deux matchs différents</strong>, tu peux refaire ton deck entièrement. Tu t'es fait démonter à la ronde 1 ? Adapte-toi pour la 2.</p>
+    </div>
+    <div class="regle">
+      <h3>Rulings</h3>
+      <p>Ceux appliqués par le client font foi, même quand ils diffèrent de 2010. Certaines cartes ont été errata depuis — Sangan, Gale et quelques autres. On ne discute pas là-dessus, on joue ce que la machine dit.</p>
+    </div>
+    <div class="regle">
+      <h3>Crash et déconnexion</h3>
+      <p>Ça arrive. On relance le duel depuis le début, avec les decks tels qu'ils étaient au moment de la coupure, side compris.</p>
+    </div>
+    <div class="regle">
+      <h3>Points</h3>
+      <p><strong>3 points</strong> par match gagné, 0 par match perdu. Le classement se fait à la fin des 5 rondes.</p>
+    </div>
+    <div class="regle">
+      <h3>Égalité en tête</h3>
+      <p>Duel de barrage en une seule partie entre les joueurs à égalité. Plus marrant qu'un calcul de différence de duels.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="calendrier"><div class="wrap">
+  <div class="titre-sec"><h2>Le calendrier</h2><span class="compte">5 rondes · 10 matchs</span></div>
+  <p class="chapeau">Chacun affronte tout le monde une fois. Deux matchs se jouent en parallèle à chaque ronde, le joueur au repos regarde et gère les litiges. Change les noms ci-dessous, le tableau se met à jour.</p>
+  <div class="noms" id="noms">
+    <div class="champ"><label for="j0">Joueur 1</label><input type="text" id="j0" data-i="0" value="Yachiru" maxlength="24"></div>
+    <div class="champ"><label for="j1">Joueur 2</label><input type="text" id="j1" data-i="1" value="Ilies" maxlength="24"></div>
+    <div class="champ"><label for="j2">Joueur 3</label><input type="text" id="j2" data-i="2" value="Tayub" maxlength="24"></div>
+    <div class="champ"><label for="j3">Joueur 4</label><input type="text" id="j3" data-i="3" value="Boyboy" maxlength="24"></div>
+    <div class="champ"><label for="j4">Joueur 5</label><input type="text" id="j4" data-i="4" value="Taisho" maxlength="24"></div>
+  </div>
+  <div class="rondes" id="rondes">
+    <div class="ronde"><div class="ronde-num">1</div><div class="ronde-corps"><span class="duel"><span data-p="0">Yachiru</span><span class="vs">VS</span><span data-p="1">Ilies</span></span><span class="duel"><span data-p="3">Boyboy</span><span class="vs">VS</span><span data-p="4">Taisho</span></span><span class="repos">Au repos · <b><span data-p="2">Tayub</span></b></span></div></div>
+    <div class="ronde"><div class="ronde-num">2</div><div class="ronde-corps"><span class="duel"><span data-p="0">Yachiru</span><span class="vs">VS</span><span data-p="2">Tayub</span></span><span class="duel"><span data-p="1">Ilies</span><span class="vs">VS</span><span data-p="3">Boyboy</span></span><span class="repos">Au repos · <b><span data-p="4">Taisho</span></b></span></div></div>
+    <div class="ronde"><div class="ronde-num">3</div><div class="ronde-corps"><span class="duel"><span data-p="0">Yachiru</span><span class="vs">VS</span><span data-p="3">Boyboy</span></span><span class="duel"><span data-p="2">Tayub</span><span class="vs">VS</span><span data-p="4">Taisho</span></span><span class="repos">Au repos · <b><span data-p="1">Ilies</span></b></span></div></div>
+    <div class="ronde"><div class="ronde-num">4</div><div class="ronde-corps"><span class="duel"><span data-p="0">Yachiru</span><span class="vs">VS</span><span data-p="4">Taisho</span></span><span class="duel"><span data-p="1">Ilies</span><span class="vs">VS</span><span data-p="2">Tayub</span></span><span class="repos">Au repos · <b><span data-p="3">Boyboy</span></b></span></div></div>
+    <div class="ronde"><div class="ronde-num">5</div><div class="ronde-corps"><span class="duel"><span data-p="1">Ilies</span><span class="vs">VS</span><span data-p="4">Taisho</span></span><span class="duel"><span data-p="2">Tayub</span><span class="vs">VS</span><span data-p="3">Boyboy</span></span><span class="repos">Au repos · <b><span data-p="0">Yachiru</span></b></span></div></div>
+  </div>
+</div></section>
+
+<section id="banlist"><div class="wrap">
+  <div class="titre-sec"><h2>La banlist</h2></div>
+  <p class="chapeau">Celle du 1<sup>er</sup> mars 2010. Toute carte qui n'y figure pas est jouable en 3 exemplaires. Garde l'onglet ouvert pendant que tu construis ton deck.</p>
+  <a class="renvoi" href="https://edisonformat.net/rules/banlist" target="_blank" rel="noopener">
+    <span class="renvoi-txt">
+      <span class="url">edisonformat.net</span>
+      <strong>Ouvrir la banlist</strong>
+      <span class="sous">Interdites, limitées et semi-limitées, à jour et illustrées</span>
+    </span>
+    <span class="fleche" aria-hidden="true">→</span>
+  </a>
+</div></section>
+
+<section id="decks"><div class="wrap">
+  <div class="titre-sec"><h2>Les decks</h2></div>
+  <p class="chapeau">Le méta Edison tourne autour de Blackwing, Quickdraw Dandywarrior, Gladiator Beast, Frog Monarch, X-Saber, Infernity, Lightsworn et Zombie Synchro. Prends une liste toute faite pour commencer, tu bidouilleras après.</p>
+  <div class="liens">
+    <a class="lien" href="https://ygoprodeck.com/category/format/edison%20format%20decks" target="_blank" rel="noopener">
+      <span class="url">ygoprodeck.com</span>
+      <h3>Decks téléchargeables en .ydk</h3>
+      <p>Le plus pratique : tu télécharges le fichier et tu l'importes directement dans MDPro3. Commence par là.</p>
+    </a>
+    <a class="lien" href="https://www.edisonformat.com/decks" target="_blank" rel="noopener">
+      <span class="url">edisonformat.com</span>
+      <h3>Decks classés par archétype</h3>
+      <p>Blackwings, Gladiator Beasts, Frogs, X-Sabers… Avec une section « Historic Decklists » pour les vraies listes de 2010.</p>
+    </a>
+    <a class="lien" href="https://formatlibrary.com/deck-gallery/edison" target="_blank" rel="noopener">
+      <span class="url">formatlibrary.com</span>
+      <h3>Galerie et couverture de tournois</h3>
+      <p>Les listes du top cut des tournois récents, les stats de méta et les replays. Pour aller plus loin.</p>
+    </a>
+    <a class="lien" href="https://edisonformat.net/rules/banlist" target="_blank" rel="noopener">
+      <span class="url">edisonformat.net</span>
+      <h3>Règles et banlist de référence</h3>
+      <p>La source officielle du format, à consulter en cas de doute sur une carte limite.</p>
+    </a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  Pour figer les noms des joueurs dans le fichier, modifie les attributs <code>value=""</code> des cinq champs de la section « Le calendrier ».
+</div></footer>
+
+<script>
+/* Toute la page est en HTML statique. Ce script ne sert qu'a
+   propager les noms saisis dans le tableau des rondes.
+   Pour figer les noms, modifie les attributs value="" des champs. */
+document.querySelectorAll("#noms input").forEach(function(input){
+  input.addEventListener("input", function(){
+    var i = input.dataset.i;
+    var v = input.value.trim() || ("Joueur " + (Number(i) + 1));
+    document.querySelectorAll('#rondes [data-p="' + i + '"]').forEach(function(el){
+      el.textContent = v;
+    });
+  });
+});
+</script>
+</body>
+</html>

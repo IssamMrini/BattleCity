@@ -172,6 +172,12 @@
   .reset:hover{color:var(--interdit);border-color:var(--interdit)}
   .reset:focus-visible{outline:2px solid var(--or-clair);outline-offset:2px}
 
+  .sous-titre{
+    font-family:var(--display);font-weight:400;font-size:clamp(20px,3vw,26px);
+    color:var(--parchemin);margin:44px 0 10px;
+  }
+  .renvoi + .sous-titre{margin-top:44px}
+
   /* ── Renvoi banlist ─────────────────────────────────── */
   .renvoi{
     display:flex;align-items:center;gap:20px;justify-content:space-between;
@@ -345,6 +351,17 @@
       <span class="url">ygoprodeck.com</span>
       <strong>Decks téléchargeables en .ydk</strong>
       <span class="sous">Tu télécharges le fichier et tu l'importes directement dans MDPro3</span>
+    </span>
+    <span class="fleche" aria-hidden="true">→</span>
+  </a>
+
+  <h3 class="sous-titre">Construire son propre deck</h3>
+  <p class="chapeau">Attention au piège : sélectionner « Edison » dans MDPro3 ou dans YGO Omega n'applique que la banlist, pas le pool de cartes. Rien ne t'empêchera d'ajouter un Tyranno Ultime-Conducteur ou un Maxx « C », qui ne sont sur aucune liste de 2010 puisqu'ils n'existaient pas encore.</p>
+  <a class="renvoi" href="https://cardcluster.com/format/tcg/march-2010-edison" target="_blank" rel="noopener">
+    <span class="renvoi-txt">
+      <span class="url">cardcluster.com</span>
+      <strong>Deck builder filtré sur le pool Edison</strong>
+      <span class="sous">Seules les cartes sorties jusqu'en avril 2010 apparaissent — export .ydk pour MDPro3</span>
     </span>
     <span class="fleche" aria-hidden="true">→</span>
   </a>

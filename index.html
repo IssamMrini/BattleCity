@@ -132,6 +132,46 @@
   }
   .repos b{color:var(--parchemin);font-weight:400}
 
+  /* ── Classement ─────────────────────────────────────── */
+  .hl{color:var(--or-clair);font-weight:600}
+  .matchs{display:grid;gap:1px;background:var(--trait);border:1px solid var(--trait);margin-bottom:34px}
+  @media(min-width:720px){.matchs{grid-template-columns:1fr 1fr}}
+  .match{background:var(--encre-2);padding:12px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .match-ronde{
+    font-family:var(--data);font-size:10px;letter-spacing:.12em;color:var(--parchemin-doux);
+    border:1px solid var(--trait);padding:3px 7px;flex:0 0 auto;
+  }
+  .vainq{
+    flex:1 1 0;min-width:88px;background:transparent;border:1px solid var(--trait);
+    color:var(--parchemin);font-family:var(--corps);font-size:15px;
+    padding:8px 10px;border-radius:2px;cursor:pointer;transition:all .15s;
+  }
+  .vainq:hover{border-color:var(--or);color:var(--or-clair)}
+  .vainq:focus-visible{outline:2px solid var(--or-clair);outline-offset:2px}
+  .vainq[aria-pressed=true]{background:var(--or);border-color:var(--or);color:var(--encre);font-weight:700}
+
+  .tableau{width:100%;border-collapse:collapse;border:1px solid var(--trait);font-size:15px}
+  .tableau th{
+    font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--parchemin-doux);font-weight:400;text-align:right;padding:11px 14px;
+    border-bottom:1px solid var(--trait);background:var(--encre-3);
+  }
+  .tableau th:nth-child(1),.tableau th:nth-child(2){text-align:left}
+  .tableau td{padding:11px 14px;border-bottom:1px solid rgba(201,162,39,.12);text-align:right}
+  .tableau td.rang,.tableau td.nom{text-align:left}
+  .tableau tr:last-child td{border-bottom:0}
+  .tableau td.rang{font-family:var(--data);font-size:13px;color:var(--parchemin-doux);width:1%}
+  .tableau td.nom{font-family:var(--display);font-size:17px}
+  .tableau td.pts{font-family:var(--data);font-weight:700;color:var(--or-clair);width:1%}
+  .tableau tr.tete td.rang,.tableau tr.tete td.nom{color:var(--or-clair)}
+  .reset{
+    margin-top:20px;background:transparent;border:1px solid var(--trait);color:var(--parchemin-doux);
+    font-family:var(--data);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    padding:10px 15px;border-radius:2px;cursor:pointer;transition:all .15s;
+  }
+  .reset:hover{color:var(--interdit);border-color:var(--interdit)}
+  .reset:focus-visible{outline:2px solid var(--or-clair);outline-offset:2px}
+
   /* ── Renvoi banlist ─────────────────────────────────── */
   .renvoi{
     display:flex;align-items:center;gap:20px;justify-content:space-between;
@@ -166,18 +206,20 @@
   <a href="#format">Le format</a>
   <a href="#regles">Les règles</a>
   <a href="#calendrier">Le calendrier</a>
+  <a href="#classement">Le classement</a>
   <a href="#banlist">La banlist</a>
   <a href="#decks">Les decks</a>
 </div></nav>
 
 <header><div class="wrap">
   <div class="cadre"><div class="cadre-int">
-    <p class="eyebrow">Tournoi entre potes · Round robin · Bo3</p>
+    <p class="eyebrow">Tournoi Battle City · Chacun contre chacun · Bo3</p>
     <h1>Format Edison<em>Banlist du 1<sup>er</sup> mars 2010</em></h1>
-    <p class="accroche">On rejoue le Yu-Gi-Oh de l'ère 5D's, figé au moment où il était le plus intéressant : les Synchros sont là, les combos infinis ne le sont pas encore. Tout se joue sur MDPro3, en room privée.</p>
+    <p class="accroche">Toutes les cartes de Duel Monsters et de GX sont là, et elles marchent encore. Cyber Dragon, Elemental HERO, Destiny HERO, Gladiator Beast, Lightsworn, Monarques : en 2010 c'était le sommet du jeu, avant que tout parte en vrille.</p>
+    <p class="accroche">Pas de Xyz, pas de Link, pas de tour où l'adversaire joue tout seul pendant dix minutes. Tu poses un monstre, tu passes, et la partie se gagne carte par carte.</p>
     <dl class="stats">
-      <div class="stat"><dt>Joueurs</dt><dd id="stat-joueurs">5</dd></div>
-      <div class="stat"><dt>Rondes</dt><dd>5, chacun joue tout le monde</dd></div>
+      <div class="stat"><dt>Joueurs</dt><dd>5</dd></div>
+      <div class="stat"><dt>Format</dt><dd>Chacun contre chacun</dd></div>
       <div class="stat"><dt>Matchs</dt><dd>2 duels gagnants</dd></div>
       <div class="stat"><dt>Plateforme</dt><dd>MDPro3</dd></div>
     </dl>
@@ -200,7 +242,6 @@
     <div class="regle">
       <h3>Le deck</h3>
       <p>Main entre <strong>40 et 60</strong> cartes, Extra <strong>15</strong> max, Side <strong>15</strong>.</p>
-      <p>Annonce ton archétype dans le groupe, premier arrivé premier servi. C'est juste pour éviter que trois personnes débarquent avec Blackwing.</p>
     </div>
     <div class="regle">
       <h3>Réglages de la room</h3>
@@ -215,7 +256,6 @@
 
 <section id="regles"><div class="wrap">
   <div class="titre-sec"><h2>Les règles</h2></div>
-  <p class="chapeau">Version courte : c'est un tournoi pour se marrer. Il n'y a que trois trucs qui comptent vraiment — le format, l'ordre des matchs, et le side deck.</p>
   <div class="regles">
     <div class="regle">
       <h3>Qui commence</h3>
@@ -225,23 +265,14 @@
     <div class="regle">
       <h3>Side deck</h3>
       <p>Entre le duel 1 et le duel 2, puis entre le 2 et le 3. MDPro3 t'ouvre l'écran automatiquement en mode Match. Tu échanges carte pour carte, Main ≥ 40, Side à 15.</p>
-      <p><strong>Entre deux matchs différents</strong>, tu peux refaire ton deck entièrement. Tu t'es fait démonter à la ronde 1 ? Adapte-toi pour la 2.</p>
     </div>
     <div class="regle">
-      <h3>Rulings</h3>
-      <p>Ceux appliqués par le client font foi, même quand ils diffèrent de 2010. Certaines cartes ont été errata depuis — Sangan, Gale et quelques autres. On ne discute pas là-dessus, on joue ce que la machine dit.</p>
+      <h3>Changer de deck</h3>
+      <p>Entre deux matchs, tu joues le deck que tu veux.</p>
     </div>
     <div class="regle">
-      <h3>Crash et déconnexion</h3>
-      <p>Ça arrive. On relance le duel depuis le début, avec les decks tels qu'ils étaient au moment de la coupure, side compris.</p>
-    </div>
-    <div class="regle">
-      <h3>Points</h3>
-      <p><strong>3 points</strong> par match gagné, 0 par match perdu. Le classement se fait à la fin des 5 rondes.</p>
-    </div>
-    <div class="regle">
-      <h3>Égalité en tête</h3>
-      <p>Duel de barrage en une seule partie entre les joueurs à égalité. Plus marrant qu'un calcul de différence de duels.</p>
+      <h3>Temps</h3>
+      <p>Pas de limite. On joue jusqu'au bout, il y aura forcément un vainqueur.</p>
     </div>
   </div>
 </div></section>
@@ -265,6 +296,34 @@
   </div>
 </div></section>
 
+<section id="classement"><div class="wrap">
+  <div class="titre-sec"><h2>Le classement</h2></div>
+  <p class="chapeau"><strong class="hl">Une victoire vaut 3 points, une défaite 0.</strong> Clique sur le nom du vainqueur de chaque match : le classement se recalcule tout seul et reste enregistré sur cet appareil.</p>
+  <div class="matchs" id="matchs">
+    <div class="match" data-m="0"><span class="match-ronde">R1</span><button type="button" class="vainq" data-c="0">Yachiru</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Ilies</button></div>
+    <div class="match" data-m="1"><span class="match-ronde">R1</span><button type="button" class="vainq" data-c="0">Boyboy</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Taisho</button></div>
+    <div class="match" data-m="2"><span class="match-ronde">R2</span><button type="button" class="vainq" data-c="0">Yachiru</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Tayub</button></div>
+    <div class="match" data-m="3"><span class="match-ronde">R2</span><button type="button" class="vainq" data-c="0">Ilies</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Boyboy</button></div>
+    <div class="match" data-m="4"><span class="match-ronde">R3</span><button type="button" class="vainq" data-c="0">Yachiru</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Boyboy</button></div>
+    <div class="match" data-m="5"><span class="match-ronde">R3</span><button type="button" class="vainq" data-c="0">Tayub</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Taisho</button></div>
+    <div class="match" data-m="6"><span class="match-ronde">R4</span><button type="button" class="vainq" data-c="0">Yachiru</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Taisho</button></div>
+    <div class="match" data-m="7"><span class="match-ronde">R4</span><button type="button" class="vainq" data-c="0">Ilies</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Tayub</button></div>
+    <div class="match" data-m="8"><span class="match-ronde">R5</span><button type="button" class="vainq" data-c="0">Ilies</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Taisho</button></div>
+    <div class="match" data-m="9"><span class="match-ronde">R5</span><button type="button" class="vainq" data-c="0">Tayub</button><span class="vs">VS</span><button type="button" class="vainq" data-c="1">Boyboy</button></div>
+  </div>
+  <table class="tableau" id="tableau">
+    <thead><tr><th>#</th><th>Joueur</th><th>J</th><th>V</th><th>D</th><th>Pts</th></tr></thead>
+    <tbody>
+      <tr data-j="0"><td class="rang">1</td><td class="nom">Yachiru</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+      <tr data-j="1"><td class="rang">2</td><td class="nom">Ilies</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+      <tr data-j="2"><td class="rang">3</td><td class="nom">Tayub</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+      <tr data-j="3"><td class="rang">4</td><td class="nom">Boyboy</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+      <tr data-j="4"><td class="rang">5</td><td class="nom">Taisho</td><td>0</td><td>0</td><td>0</td><td class="pts">0</td></tr>
+    </tbody>
+  </table>
+  <button type="button" class="reset" id="reset">Remettre le classement à zéro</button>
+</div></section>
+
 <section id="banlist"><div class="wrap">
   <div class="titre-sec"><h2>La banlist</h2></div>
   <p class="chapeau">Celle du 1<sup>er</sup> mars 2010. Toute carte qui n'y figure pas est jouable en 3 exemplaires. Garde l'onglet ouvert pendant que tu construis ton deck.</p>
@@ -281,28 +340,14 @@
 <section id="decks"><div class="wrap">
   <div class="titre-sec"><h2>Les decks</h2></div>
   <p class="chapeau">Le méta Edison tourne autour de Blackwing, Quickdraw Dandywarrior, Gladiator Beast, Frog Monarch, X-Saber, Infernity, Lightsworn et Zombie Synchro. Prends une liste toute faite pour commencer, tu bidouilleras après.</p>
-  <div class="liens">
-    <a class="lien" href="https://ygoprodeck.com/category/format/edison%20format%20decks" target="_blank" rel="noopener">
+  <a class="renvoi" href="https://ygoprodeck.com/category/format/edison%20format%20decks" target="_blank" rel="noopener">
+    <span class="renvoi-txt">
       <span class="url">ygoprodeck.com</span>
-      <h3>Decks téléchargeables en .ydk</h3>
-      <p>Le plus pratique : tu télécharges le fichier et tu l'importes directement dans MDPro3. Commence par là.</p>
-    </a>
-    <a class="lien" href="https://www.edisonformat.com/decks" target="_blank" rel="noopener">
-      <span class="url">edisonformat.com</span>
-      <h3>Decks classés par archétype</h3>
-      <p>Blackwings, Gladiator Beasts, Frogs, X-Sabers… Avec une section « Historic Decklists » pour les vraies listes de 2010.</p>
-    </a>
-    <a class="lien" href="https://formatlibrary.com/deck-gallery/edison" target="_blank" rel="noopener">
-      <span class="url">formatlibrary.com</span>
-      <h3>Galerie et couverture de tournois</h3>
-      <p>Les listes du top cut des tournois récents, les stats de méta et les replays. Pour aller plus loin.</p>
-    </a>
-    <a class="lien" href="https://edisonformat.net/rules/banlist" target="_blank" rel="noopener">
-      <span class="url">edisonformat.net</span>
-      <h3>Règles et banlist de référence</h3>
-      <p>La source officielle du format, à consulter en cas de doute sur une carte limite.</p>
-    </a>
-  </div>
+      <strong>Decks téléchargeables en .ydk</strong>
+      <span class="sous">Tu télécharges le fichier et tu l'importes directement dans MDPro3</span>
+    </span>
+    <span class="fleche" aria-hidden="true">→</span>
+  </a>
 </div></section>
 
 <footer><div class="wrap">
@@ -310,9 +355,7 @@
 </div></footer>
 
 <script>
-/* Toute la page est en HTML statique. Ce script ne sert qu'a
-   propager les noms saisis dans le tableau des rondes.
-   Pour figer les noms, modifie les attributs value="" des champs. */
+/* Noms des joueurs : propage la saisie dans le tableau des rondes. */
 document.querySelectorAll("#noms input").forEach(function(input){
   input.addEventListener("input", function(){
     var i = input.dataset.i;
@@ -322,6 +365,90 @@ document.querySelectorAll("#noms input").forEach(function(input){
     });
   });
 });
+
+/* ── Classement ──────────────────────────────────────────
+   MATCHS : [indice joueur A, indice joueur B] pour les 10 matchs,
+   dans le meme ordre que les lignes affichees. */
+var MATCHS = [[0,1],[3,4],[0,2],[1,3],[0,3],[2,4],[0,4],[1,2],[1,4],[2,3]];
+var CLE = "edison-classement";
+var resultats = new Array(MATCHS.length).fill(null); // null | 0 | 1
+
+function charger(){
+  try {
+    var brut = localStorage.getItem(CLE);
+    if (!brut) return;
+    var lu = JSON.parse(brut);
+    if (Array.isArray(lu) && lu.length === MATCHS.length) resultats = lu;
+  } catch (e) { /* stockage indisponible : on continue sans sauvegarde */ }
+}
+function sauver(){
+  try { localStorage.setItem(CLE, JSON.stringify(resultats)); } catch (e) {}
+}
+
+var lignes = Array.prototype.slice.call(document.querySelectorAll("#tableau tbody tr"));
+
+function rafraichir(){
+  /* Boutons */
+  document.querySelectorAll("#matchs .match").forEach(function(bloc){
+    var m = Number(bloc.dataset.m);
+    bloc.querySelectorAll(".vainq").forEach(function(btn){
+      btn.setAttribute("aria-pressed", resultats[m] === Number(btn.dataset.c) ? "true" : "false");
+    });
+  });
+
+  /* Comptage */
+  var stats = MATCHS.length ? [0,1,2,3,4].map(function(){ return {j:0, v:0, d:0}; }) : [];
+  resultats.forEach(function(gagnant, m){
+    if (gagnant === null) return;
+    var a = MATCHS[m][0], b = MATCHS[m][1];
+    var vainqueur = gagnant === 0 ? a : b;
+    var perdant   = gagnant === 0 ? b : a;
+    stats[vainqueur].j++; stats[vainqueur].v++;
+    stats[perdant].j++;   stats[perdant].d++;
+  });
+
+  /* Tri : points, puis victoires, puis ordre initial */
+  var ordre = lignes.map(function(tr){
+    var i = Number(tr.dataset.j);
+    return {tr:tr, i:i, s:stats[i], pts:stats[i].v * 3};
+  });
+  ordre.sort(function(x, y){ return (y.pts - x.pts) || (y.s.v - x.s.v) || (x.i - y.i); });
+
+  var corps = document.querySelector("#tableau tbody");
+  var rangPrec = 0, ptsPrec = null;
+  ordre.forEach(function(o, k){
+    var rang = (ptsPrec !== null && o.pts === ptsPrec) ? rangPrec : k + 1;
+    rangPrec = rang; ptsPrec = o.pts;
+    var td = o.tr.children;
+    td[0].textContent = rang;
+    td[2].textContent = o.s.j;
+    td[3].textContent = o.s.v;
+    td[4].textContent = o.s.d;
+    td[5].textContent = o.pts;
+    o.tr.classList.toggle("tete", rang === 1 && o.pts > 0);
+    corps.appendChild(o.tr);
+  });
+}
+
+document.querySelectorAll("#matchs .vainq").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var m = Number(btn.closest(".match").dataset.m);
+    var c = Number(btn.dataset.c);
+    resultats[m] = (resultats[m] === c) ? null : c; /* reclic = annule */
+    sauver();
+    rafraichir();
+  });
+});
+
+document.getElementById("reset").addEventListener("click", function(){
+  if (!confirm("Effacer tous les résultats ?")) return;
+  resultats = new Array(MATCHS.length).fill(null);
+  sauver();
+  rafraichir();
+});
+
+charger();
+rafraichir();
 </script>
 </body>
 </html>
